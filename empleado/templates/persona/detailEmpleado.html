@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block tittle %}
+    {{object.full_name}}
+{% endblock tittle %}
+    
+{% block content %} 
+
+{% include 'includes/header.html' %}  
+   
+   
+<div class="grid-container" style="margin-top: 30px;">
+    <div class="grid-x grid-margin-x align-center ">
+        <div class="card cell large-4" style="width: 300px;">
+            <div class="card-divider">
+              {{empleado.get_job_display}}
+            </div>
+            
+            {% if empleado.imagen %}
+                <img src="{{ empleado.imagen.url }}">
+            {% else %}
+                <img src="{% static 'img/notFound.jpg'%}" alt="imagen">
+            {% endif %}
+                
+            
+            <div class="card-section">
+                <h4>{{empleado.full_name}}</h4>
+                <p><b>Nombre:</b> {{empleado.first_name}}</p>
+                <p><b>Apellido:</b> {{empleado.last_name}}</p>
+                <p><b>Departamento:</b> {{empleado.departamento.name}}</p>
+                <p><span class="label">Habilidades y Atributos:</span></p>
+                <ul class="vertical menu"></ul>
+                    {% for h in empleado.habilidades.all %}
+                        <li> {{h.habilidades}}</li>
+                    {% endfor %}
+                <td><a href="{% url 'persona_app:delete' empleado.id %}" style="margin-top: 10px;" class="button alert">Eliminar Empleado</a></td>
+                    
+            </div>
+          </div>
+    </div>
+   
+
+</div> 
+
+{% endblock content %}
+
+   
+
+
+

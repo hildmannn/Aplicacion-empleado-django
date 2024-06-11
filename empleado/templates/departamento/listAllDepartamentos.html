@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <h1 class="large-4">Departamentos</h1> 
+    <div> 
+        <!--Creador de tabla-->
+        <table>
+            <thead>
+              <tr>
+                <th width="150">NOMBRES</th>
+                <th width="150">DEPARTAMENTO</th>
+                <th width="150">ACCION</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for area in object_list %}
+              <tr>
+                <td>{{area.name|upper}}</td>
+                <td>{{area.short_name|upper}}</td>
+                <td><a href="{% url 'persona_app:EmpleadosPorArea' area.short_name %}" class="button">Ver Empleados</a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <!--Paginacion-->
+    </div>
+</div>
+
+    
+{% endblock content %}

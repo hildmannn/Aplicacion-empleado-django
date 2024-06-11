@@ -1,0 +1,16 @@
+<h1>Pruba Lista</h1>
+
+{{ listaPrueba }}
+
+
+<ul>
+    <li>
+        
+        {% for atributo in listaDesdeModel %}
+            {{atributo.titulo}} <br>
+            {{atributo.subtitulo}}
+            <br>
+        {% endfor %}
+            
+    </li>
+</ul>
